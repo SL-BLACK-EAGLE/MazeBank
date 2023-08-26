@@ -1,10 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.layout.*?>
+<?import javafx.scene.control.ListView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Text?>
 
-<AnchorPane xmlns="http://javafx.com/javafx"
-            xmlns:fx="http://javafx.com/fxml"
-            fx:controller="Fxml.Client.Transactions"
-            prefHeight="400.0" prefWidth="600.0">
 
+<AnchorPane prefHeight="750.0" prefWidth="850.0" xmlns="http://javafx.com/javafx/8.0.171"
+            xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.axs.pos.Controllers.Client.TransactionController">
+    <Text layoutX="384.0" layoutY="30.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Transactions"
+          AnchorPane.leftAnchor="384.0" AnchorPane.topAnchor="14.0"/>
+    <ListView fx:id="transaction_listview" layoutX="14.0" layoutY="78.0" prefHeight="640.0" prefWidth="830.0"
+              AnchorPane.leftAnchor="14.0" AnchorPane.topAnchor="100.0"/>
 </AnchorPane>
