@@ -1,7 +1,9 @@
 package com.axs.pos.Controllers;
 
+import com.axs.pos.Models.Model;
 import javafx.fxml.Initializable;
 import javafx.scene.control.*;
+import javafx.stage.Stage;
 
 
 import java.net.URL;
@@ -18,6 +20,11 @@ public class LoginController implements Initializable {
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-
+        login_btn.setOnAction(event -> onLogin());
+    }
+    private void onLogin(){
+        Stage stage = (Stage) error_lbl.getScene().getWindow();
+        Model.getInstance().getViewFactory().closeStage(stage);
+        Model.getInstance().getViewFactory().showClientWindow();
     }
 }

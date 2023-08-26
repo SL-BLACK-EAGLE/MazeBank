@@ -7,7 +7,6 @@ import javafx.scene.Scene;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 
-import java.io.IOException;
 
 public class ViewFactory {
 //    Client Views
@@ -26,12 +25,12 @@ public class ViewFactory {
     }
 
     public void showLoginWindow(){
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("Fxml/login.fxml"));
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/Fxml/Login.fxml"));
         createStage(loader);
     }
 
     public void showClientWindow(){
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("Fxml/Client/Client.fxml"));
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/Fxml/Client/Client.fxml"));
         ClientController clientController = new ClientController();
         loader.setController(clientController);
         createStage(loader);
@@ -48,5 +47,9 @@ public class ViewFactory {
         stage.setScene(scene);
         stage.setTitle("Maze Bank");
         stage.show();
+    }
+
+    public void closeStage(Stage stage){
+        stage.close();
     }
 }

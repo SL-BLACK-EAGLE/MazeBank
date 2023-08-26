@@ -5,7 +5,7 @@ import com.axs.pos.Views.ViewFactory;
 
 public class Model {
     private static Model model;
-    private ViewFactory viewFactory;
+    private final ViewFactory viewFactory;
 
     private Model(){
         this.viewFactory = new ViewFactory();
@@ -15,5 +15,8 @@ public class Model {
             model = new Model();
         }
         return model;
+    }
+    public ViewFactory getViewFactory(){
+        return viewFactory;
     }
 }
