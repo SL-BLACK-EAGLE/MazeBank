@@ -1,7 +1,8 @@
 package com.axs.pos.Views;
 
 import com.axs.pos.Controllers.Client.ClientController;
-import javafx.fxml.FXML;
+import javafx.beans.property.SimpleStringProperty;
+import javafx.beans.property.StringProperty;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.scene.layout.AnchorPane;
@@ -10,9 +11,18 @@ import javafx.stage.Stage;
 
 public class ViewFactory {
 //    Client Views
+    private final StringProperty clientSelectedMenuItem;
     private AnchorPane dashboardView;
     private AnchorPane transactionsView;
-    public ViewFactory(){}
+    public ViewFactory(){
+        this.clientSelectedMenuItem = new SimpleStringProperty("");
+        System.out.println("SimpleStringProperty");
+    }
+
+    public StringProperty getClientSelectedMenuItem() {
+        System.out.println("getClientSelectedMenuItem");
+        return clientSelectedMenuItem;
+    }
 
     public AnchorPane getDashboardView(){
         if (dashboardView == null){
