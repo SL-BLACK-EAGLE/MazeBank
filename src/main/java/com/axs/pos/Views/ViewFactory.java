@@ -16,11 +16,10 @@ public class ViewFactory {
     private AnchorPane transactionsView;
     public ViewFactory(){
         this.clientSelectedMenuItem = new SimpleStringProperty("");
-        System.out.println("SimpleStringProperty");
+
     }
 
     public StringProperty getClientSelectedMenuItem() {
-        System.out.println("getClientSelectedMenuItem");
         return clientSelectedMenuItem;
     }
 

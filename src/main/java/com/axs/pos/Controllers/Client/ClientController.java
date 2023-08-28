@@ -11,7 +11,6 @@ public class ClientController implements Initializable {
     public BorderPane client_parent;
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        System.out.println("ClientController initialize");
 
         Model.getInstance().getViewFactory().getClientSelectedMenuItem().addListener((observable, oldValue, newValue) -> {
             switch (newValue){

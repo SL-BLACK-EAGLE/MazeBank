@@ -18,23 +18,19 @@ public class ClientMenuController implements Initializable {
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        System.out.println("From ClientMenuController");
         addListeners();
     }
 
     private void addListeners(){
-        System.out.println("From addListener");
         dashboard_btn.setOnAction(event -> onDashboard());
         transaction_btn.setOnAction(event -> onTransactions());
     }
     private void onDashboard(){
-        System.out.println("This is Dashboard");
         Model.getInstance().getViewFactory().getClientSelectedMenuItem().set("Dashboard");
 
     }
 
     private void onTransactions(){
-        System.out.println("This is Transactions");
         Model.getInstance().getViewFactory().getClientSelectedMenuItem().set("Transactions");
 
 

@@ -9,12 +9,10 @@ public class Model {
 
     private Model(){
         this.viewFactory = new ViewFactory();
-        System.out.println("execute Model");
     }
     public static synchronized Model getInstance(){
         if(model == null){
             model = new Model();
-            System.out.println("new model");
         }
         return model;
     }
