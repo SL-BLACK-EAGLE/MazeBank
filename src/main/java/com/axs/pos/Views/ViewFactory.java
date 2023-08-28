@@ -14,6 +14,8 @@ public class ViewFactory {
     private final StringProperty clientSelectedMenuItem;
     private AnchorPane dashboardView;
     private AnchorPane transactionsView;
+
+
     public ViewFactory(){
         this.clientSelectedMenuItem = new SimpleStringProperty("");
 
