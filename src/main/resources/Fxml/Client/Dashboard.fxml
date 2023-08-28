@@ -31,7 +31,7 @@
          <Font size="14.0" />
       </font>
    </Text>
-   <HBox layoutX="20.0" layoutY="120.0" prefHeight="180.0" prefWidth="620.0" styleClass="accounts_view" AnchorPane.leftAnchor="20.0" AnchorPane.rightAnchor="210.0" AnchorPane.topAnchor="120.0">
+   <HBox layoutX="20.0" layoutY="120.0" prefHeight="180.0" prefWidth="620.0" styleClass="accounts_view" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="200.0" AnchorPane.topAnchor="120.0">
       <AnchorPane prefHeight="150.0" prefWidth="295.0">
          <styleClass>
             <String fx:value="account" />
@@ -57,7 +57,7 @@
          <Text layoutX="14.0" layoutY="161.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Saving Account" AnchorPane.bottomAnchor="14.0" AnchorPane.leftAnchor="14.0" />
       </AnchorPane>
    </HBox>
-   <VBox layoutX="640.0" layoutY="120.0" prefHeight="180.0" prefWidth="210.0" styleClass="summary_view" AnchorPane.leftAnchor="640.0" AnchorPane.topAnchor="120.0">
+   <VBox layoutX="640.0" layoutY="120.0" prefHeight="180.0" prefWidth="210.0" styleClass="summary_view" AnchorPane.leftAnchor="630.0" AnchorPane.topAnchor="120.0">
       <VBox prefHeight="200.0" prefWidth="100.0" styleClass="acc_summary_container">
          <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Income" />
          <Label fx:id="income_lbl" styleClass="income_amount" text="+ $4000.00" />

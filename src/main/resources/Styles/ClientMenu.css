@@ -76,6 +76,7 @@
 .report_container Text {
     -fx-font-weight: bold;
     -fx-fill: #132A13;
+    -fx-font-size: 0.9em;
 }
 
 .report_container Label {
