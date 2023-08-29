@@ -1,6 +1,8 @@
 package com.axs.pos.Controllers.Admin;
 
+import com.axs.pos.Models.AdminMenuOptions;
 import com.axs.pos.Models.Model;
+import javafx.beans.property.ObjectProperty;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 
@@ -18,6 +20,6 @@ public class AdminMenuController implements Initializable {
 
     }
     private void addListeners(){
-        Model.getInstance().getViewFactory().getAdminSelectedMenuItem().set("CreateClient");
+        Model.getInstance().getViewFactory().getAdminSelectedMenuItem().set(AdminMenuOptions.CREATE_CLIENT);
     }
 }

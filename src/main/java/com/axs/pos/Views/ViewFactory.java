@@ -2,8 +2,10 @@ package com.axs.pos.Views;
 
 import com.axs.pos.Controllers.Admin.AdminController;
 import com.axs.pos.Controllers.Client.ClientController;
-import javafx.beans.property.SimpleStringProperty;
-import javafx.beans.property.StringProperty;
+import com.axs.pos.Models.AdminMenuOptions;
+import com.axs.pos.Models.ClientMenuOptions;
+import javafx.beans.property.ObjectProperty;
+import javafx.beans.property.SimpleObjectProperty;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.scene.layout.AnchorPane;
@@ -11,14 +13,14 @@ import javafx.stage.Stage;
 
 
 public class ViewFactory {
+    private  AccountType loginAccountType;
     //    Client Views
-
-    private final StringProperty clientSelectedMenuItem;
+    private final ObjectProperty<ClientMenuOptions> clientSelectedMenuItem;
     private AnchorPane dashboardView;
     private AnchorPane transactionsView;
 
     // Admin Views
-    private final StringProperty adminSelectedMenuItem;
+    private final ObjectProperty<AdminMenuOptions> adminSelectedMenuItem;
     private AnchorPane createClientView;
 
 
@@ -28,12 +30,21 @@ public class ViewFactory {
 
     private AnchorPane accountView;
     public ViewFactory(){
-        this.clientSelectedMenuItem = new SimpleStringProperty("");
-        this.adminSelectedMenuItem = new SimpleStringProperty("");
+        this.loginAccountType = AccountType.CLIENT;
+        this.clientSelectedMenuItem = new SimpleObjectProperty<>();
+        this.adminSelectedMenuItem = new SimpleObjectProperty<>();
 
     }
 
-    public StringProperty getClientSelectedMenuItem() {
+    public AccountType getLoginAccountType() {
+        return loginAccountType;
+    }
+
+    public void setLoginAccountType(AccountType loginAccountType) {
+        this.loginAccountType = loginAccountType;
+    }
+
+    public ObjectProperty<ClientMenuOptions> getClientSelectedMenuItem() {
         return clientSelectedMenuItem;
     }
 
@@ -84,7 +95,7 @@ public class ViewFactory {
         Admin section
     */
 
-    public StringProperty getAdminSelectedMenuItem(){
+    public ObjectProperty<AdminMenuOptions> getAdminSelectedMenuItem(){
         return adminSelectedMenuItem;
     }
     public AnchorPane getCreateClientView() {
