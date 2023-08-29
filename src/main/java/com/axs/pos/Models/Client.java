@@ -15,7 +15,7 @@ public class Client {
     private final ObjectProperty<Account> savingAccount;
     private final ObjectProperty<LocalDate> dateCreated;
 
-    public Client(String fName, String lName, String pAddress, Account cAccount, Account sAccount, LocalDate date){
+    public Client(String fName, String lName, String pAddress, Account cAccount, Account sAccount, LocalDate date) {
         this.firstName = new SimpleStringProperty(this, "FirstName", fName);
         this.lastname = new SimpleStringProperty(this, "LastName", lName);
         this.payeeAddress = new SimpleStringProperty(this, "Payee Address", pAddress);
@@ -24,10 +24,27 @@ public class Client {
         this.dateCreated = new SimpleObjectProperty<>(this, "Date", date);
     }
 
-    public StringProperty firstNameProperty(){return firstName;}
-    public StringProperty lastNameProperty(){return lastname;}
-    public StringProperty pAddressProperty(){return payeeAddress;}
-    public ObjectProperty<Account> checkingAccountProperty(){return checkingAccount;}
-    public ObjectProperty<Account> savingAccountProperty(){return savingAccount;}
-    public ObjectProperty<LocalDate> dateProperty(){return dateCreated;}
+    public StringProperty firstNameProperty() {
+        return firstName;
+    }
+
+    public StringProperty lastNameProperty() {
+        return lastname;
+    }
+
+    public StringProperty pAddressProperty() {
+        return payeeAddress;
+    }
+
+    public ObjectProperty<Account> checkingAccountProperty() {
+        return checkingAccount;
+    }
+
+    public ObjectProperty<Account> savingAccountProperty() {
+        return savingAccount;
+    }
+
+    public ObjectProperty<LocalDate> dateProperty() {
+        return dateCreated;
+    }
 }

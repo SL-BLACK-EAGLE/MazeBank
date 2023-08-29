@@ -13,7 +13,16 @@ public abstract class Account {
         this.accountNumber = new SimpleStringProperty(this, "Account number", accountNumber);
         this.balance = new SimpleDoubleProperty(this, "Balance", balance);
     }
-    public StringProperty ownerProperty(){return owner;}
-    public StringProperty accountNumberProperty(){return accountNumber;}
-    public DoubleProperty balanceProperty(){return balance;}
+
+    public StringProperty ownerProperty() {
+        return owner;
+    }
+
+    public StringProperty accountNumberProperty() {
+        return accountNumber;
+    }
+
+    public DoubleProperty balanceProperty() {
+        return balance;
+    }
 }
