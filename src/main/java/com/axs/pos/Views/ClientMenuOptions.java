@@ -1,4 +1,4 @@
-package com.axs.pos.Models;
+package com.axs.pos.Views;
 
 public enum ClientMenuOptions {
     DASHBOARD,
