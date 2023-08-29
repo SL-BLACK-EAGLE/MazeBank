@@ -21,7 +21,7 @@
    <VBox layoutX="243.0" layoutY="14.0" prefHeight="350.0" prefWidth="350.0" styleClass="login_form_container"
          AnchorPane.leftAnchor="230.0" AnchorPane.rightAnchor="20.0" AnchorPane.topAnchor="20.0">
       <Label id="choice-prompt-text" text="Choose Your Account Type"/>
-      <ChoiceBox fx:id="account_selector" prefHeight="31.0" prefWidth="179.0" styleClass="account-selector"/>
+      <ChoiceBox fx:id="account_selector" prefHeight="31.0" prefWidth="90.0" styleClass="account-selector"/>
       <Label fx:id="payee_address_lbl" text="Payee Address"/>
       <TextField fx:id="payee_address_field" styleClass="input_field"/>
       <Label fx:id="password_lbl" text="Password"/>
