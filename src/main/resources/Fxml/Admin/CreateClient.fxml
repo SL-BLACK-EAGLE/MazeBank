@@ -12,11 +12,11 @@
    <Text layoutX="14.0" layoutY="30.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Create New Client Account" AnchorPane.leftAnchor="14.0" AnchorPane.topAnchor="14.0" />
    <VBox fillWidth="false" layoutX="14.0" layoutY="44.0" prefHeight="700.0" prefWidth="600.0" AnchorPane.leftAnchor="14.0" AnchorPane.topAnchor="40.0">
       <Text strokeType="OUTSIDE" strokeWidth="0.0" text="First name:" />
-      <TextField fx:id="fname_fld" prefHeight="31.0" prefWidth="200.0" />
+      <TextField fx:id="fName_fld" prefHeight="31.0" prefWidth="200.0" />
       <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Last Name:" />
-      <TextField fx:id="lname_fld" prefHeight="31.0" prefWidth="200.0" />
+      <TextField fx:id="lName_fld" prefHeight="31.0" prefWidth="200.0" />
       <Text layoutX="10.0" layoutY="77.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Password:" />
-      <TextField fx:id="pword_fld" layoutX="10.0" layoutY="82.0" prefHeight="31.0" prefWidth="200.0" />
+      <TextField fx:id="pWord_fld" layoutX="10.0" layoutY="82.0" prefHeight="31.0" prefWidth="200.0" />
       <Text layoutX="10.0" layoutY="130.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Payee Address:" />
       <CheckBox fx:id="pAddress_box" mnemonicParsing="false" />
       <Label fx:id="pAddress_lbl" styleClass="payee_address_lbl" />
