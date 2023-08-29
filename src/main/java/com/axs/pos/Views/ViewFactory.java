@@ -2,8 +2,6 @@ package com.axs.pos.Views;
 
 import com.axs.pos.Controllers.Admin.AdminController;
 import com.axs.pos.Controllers.Client.ClientController;
-import com.axs.pos.Models.AdminMenuOptions;
-import com.axs.pos.Models.ClientMenuOptions;
 import javafx.beans.property.ObjectProperty;
 import javafx.beans.property.SimpleObjectProperty;
 import javafx.fxml.FXMLLoader;
@@ -22,6 +20,7 @@ public class ViewFactory {
     // Admin Views
     private final ObjectProperty<AdminMenuOptions> adminSelectedMenuItem;
     private AnchorPane createClientView;
+    private AnchorPane clientsView;
 
 
     /*
@@ -107,6 +106,16 @@ public class ViewFactory {
             }
         }
         return createClientView;
+    }
+    public AnchorPane getClientsView(){
+        if (clientsView == null){
+            try {
+                clientsView = new FXMLLoader(getClass().getResource("/Fxml/Admin/Clients.fxml")).load();
+            }catch (Exception e){
+                e.printStackTrace();
+            }
+        }
+        return clientsView;
     }
 
     public void showAdminWindow(){

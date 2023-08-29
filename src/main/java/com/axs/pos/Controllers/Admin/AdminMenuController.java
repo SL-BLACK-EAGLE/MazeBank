@@ -1,8 +1,7 @@
 package com.axs.pos.Controllers.Admin;
 
-import com.axs.pos.Models.AdminMenuOptions;
+import com.axs.pos.Views.AdminMenuOptions;
 import com.axs.pos.Models.Model;
-import javafx.beans.property.ObjectProperty;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 
@@ -17,9 +16,17 @@ public class AdminMenuController implements Initializable {
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-
+        addListeners();
     }
+
     private void addListeners(){
+        create_client_btn.setOnAction(event -> onCreateClient());
+        clients_btn.setOnAction(event -> onClients());
+    }
+    private void onCreateClient(){
         Model.getInstance().getViewFactory().getAdminSelectedMenuItem().set(AdminMenuOptions.CREATE_CLIENT);
+    }
+    private void onClients(){
+        Model.getInstance().getViewFactory().getAdminSelectedMenuItem().set(AdminMenuOptions.CLIENTS);
     }
 }

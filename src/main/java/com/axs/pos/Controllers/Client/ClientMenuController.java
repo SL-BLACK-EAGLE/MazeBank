@@ -1,6 +1,6 @@
 package com.axs.pos.Controllers.Client;
 
-import com.axs.pos.Models.ClientMenuOptions;
+import com.axs.pos.Views.ClientMenuOptions;
 import com.axs.pos.Models.Model;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
