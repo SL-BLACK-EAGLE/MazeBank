@@ -1,5 +1,6 @@
 package com.axs.pos.Controllers.Client;
 
+import com.axs.pos.Models.Transaction;
 import de.jensd.fx.glyphs.fontawesome.FontAwesomeIconView;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
@@ -18,6 +19,11 @@ public class TransactionCellController implements Initializable {
     public Label receiver_lbl;
     public Label amount_lbl;
     public Button message_btn;
+
+    private  final Transaction transaction;
+    public TransactionCellController(Transaction transaction){
+        this.transaction = transaction;
+    }
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
