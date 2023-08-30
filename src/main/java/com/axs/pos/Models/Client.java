@@ -12,7 +12,7 @@ public class Client {
     private final StringProperty lastname;
     private final StringProperty payeeAddress;
     private final ObjectProperty<Account> checkingAccount;
-    private final ObjectProperty<Account> savingAccount;
+    private final ObjectProperty<Account> savingsAccount;
     private final ObjectProperty<LocalDate> dateCreated;
 
     public Client(String fName, String lName, String pAddress, Account cAccount, Account sAccount, LocalDate date) {
@@ -20,7 +20,7 @@ public class Client {
         this.lastname = new SimpleStringProperty(this, "LastName", lName);
         this.payeeAddress = new SimpleStringProperty(this, "Payee Address", pAddress);
         this.checkingAccount = new SimpleObjectProperty<>(this, "CheckingAccount", cAccount);
-        this.savingAccount = new SimpleObjectProperty<>(this, "SavingAccount", sAccount);
+        this.savingsAccount = new SimpleObjectProperty<>(this, "SavingsAccount", sAccount);
         this.dateCreated = new SimpleObjectProperty<>(this, "Date", date);
     }
 
@@ -40,8 +40,8 @@ public class Client {
         return checkingAccount;
     }
 
-    public ObjectProperty<Account> savingAccountProperty() {
-        return savingAccount;
+    public ObjectProperty<Account> savingsAccountProperty() {
+        return savingsAccount;
     }
 
     public ObjectProperty<LocalDate> dateProperty() {
