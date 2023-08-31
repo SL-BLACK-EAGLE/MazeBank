@@ -65,7 +65,7 @@ public class Model {
         SavingsAccount savingsAccount;
         ResultSet resultSet = databaseDriver.getClientData(pAddress, password);
         try {
-            if (resultSet.isBeforeFirst()){
+            if (resultSet.next()){
                 this.client.firstNameProperty().set(resultSet.getString("FirstName"));
                 this.client.lastNameProperty().set(resultSet.getString("LastName"));
                 this.client.pAddressProperty().set(resultSet.getString("PayeeAddress"));

@@ -1,45 +1,32 @@
 package com.axs.pos.Models;
 
-import java.sql.Connection;
-import java.sql.DriverManager;
 import java.sql.ResultSet;
-import java.sql.Statement;
 import java.time.LocalDate;
 
 public class DatabaseDriver {
-    private Connection conn;
-
-    public DatabaseDriver() {
-        try {
-            this.conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/mazebank","root", "Chathuhansika@2017");
-        } catch (Exception e){
-            e.printStackTrace();
-        }
-    }
 
     /*
      * Client Section
      * */
 
     public ResultSet getClientData(String pAddress, String password) {
-        Statement statement;
+
         ResultSet resultSet = null;
         try {
-            statement = this.conn.createStatement();
-            resultSet = statement.executeQuery("SELECT * FROM `clients` WHERE `PayeeAddress`='"+pAddress+"' AND Password='"+password+"';");
-        }catch (Exception e){
+
+            resultSet = MySQL.execute("SELECT * FROM `clients` WHERE `PayeeAddress`='" + pAddress + "' AND Password='" + password + "';");
+        } catch (Exception e) {
             e.printStackTrace();
         }
         return resultSet;
     }
 
     public ResultSet getTransactions(String pAddress, int limit) {
-        Statement statement;
+
         ResultSet resultSet = null;
         try {
-            statement = this.conn.createStatement();
-            resultSet = statement.executeQuery("SELECT * FROM `transactions` WHERE `Sender`='"+pAddress+"' OR Receiver='"+pAddress+"' LIMIT "+limit+";");
-        }catch (Exception e){
+            resultSet = MySQL.execute("SELECT * FROM `transactions` WHERE `Sender`='" + pAddress + "' OR Receiver='" + pAddress + "' LIMIT " + limit + " ");
+        } catch (Exception e) {
             e.printStackTrace();
         }
         return resultSet;
@@ -47,14 +34,14 @@ public class DatabaseDriver {
 
     // Method returns savings account balance
     public double getSavingsAccountBalance(String pAddress) {
-        Statement statement;
-        ResultSet resultSet;
+
         double balance = 0;
         try {
-            statement = this.conn.createStatement();
-            resultSet = statement.executeQuery("SELECT * FROM `savingsaccounts` WHERE Owner='"+pAddress+"';");
+
+            ResultSet resultSet = MySQL.execute("SELECT * FROM `savingsaccounts` WHERE Owner='" + pAddress + "' ");
+            assert resultSet != null;
             balance = resultSet.getDouble("Balance");
-        }catch (Exception e){
+        } catch (Exception e) {
             e.printStackTrace();
         }
         return balance;
@@ -62,36 +49,34 @@ public class DatabaseDriver {
 
     // Method to either add or subtract from balance given operation
     public void updateBalance(String pAddress, double amount, String operation) {
-        Statement statement;
-        ResultSet resultSet;
-        try{
-            statement = this.conn.createStatement();
-            resultSet = statement.executeQuery("SELECT * FROM `savingsaccounts` WHERE Owner='"+pAddress+"';");
+
+        try {
+
+            ResultSet resultSet = MySQL.execute("SELECT * FROM `savingsaccounts` WHERE Owner='" + pAddress + "' ");
             double newBalance;
-            if (operation.equals("ADD")){
+            if (operation.equals("ADD")) {
                 newBalance = resultSet.getDouble("Balance") + amount;
-                statement.executeUpdate("UPDATE `savingsaccounts` SET `Balance` ="+newBalance+" WHERE Owner='"+pAddress+"';");
+                MySQL.execute("UPDATE `savingsaccounts` SET `Balance` =" + newBalance + " WHERE Owner='" + pAddress + "' ");
             } else {
                 if (resultSet.getDouble("Balance") >= amount) {
                     newBalance = resultSet.getDouble("Balance") - amount;
-                    statement.executeUpdate("UPDATE `savingsaccounts` SET `Balance` ="+newBalance+" WHERE Owner='"+pAddress+"';");
+                    MySQL.execute("UPDATE `savingsaccounts` SET `Balance` =" + newBalance + " WHERE Owner='" + pAddress + "' ");
                 }
             }
-        }catch (Exception e){
+        } catch (Exception e) {
             e.printStackTrace();
         }
     }
 
     // Creates and records new transaction
     public void newTransaction(String sender, String receiver, double amount, String message) {
-        Statement statement;
+
         try {
-            statement = this.conn.createStatement();
             LocalDate date = LocalDate.now();
-            statement.executeUpdate("INSERT INTO " +
+            MySQL.execute("INSERT INTO " +
                     "Transactions(Sender, Receiver, Amount, Date, Message) " +
-                    "VALUES ('"+sender+"', '"+receiver+"', "+amount+", '"+date+"', '"+message+"');");
-        }catch (Exception e){
+                    "VALUES ('" + sender + "', '" + receiver + "', " + amount + ", '" + date + "', '" + message + "') ");
+        } catch (Exception e) {
             e.printStackTrace();
         }
     }
@@ -101,71 +86,63 @@ public class DatabaseDriver {
      * */
 
     public ResultSet getAdminData(String username, String password) {
-        Statement statement;
         ResultSet resultSet = null;
         try {
-            statement = this.conn.createStatement();
-            resultSet = statement.executeQuery("SELECT * FROM Admins WHERE Username='"+username+"' AND Password='"+password+"';");
-        }catch (Exception e){
+            resultSet = MySQL.execute("SELECT * FROM Admins WHERE Username='" + username + "' AND Password='" + password + "' ");
+        } catch (Exception e) {
             e.printStackTrace();
         }
         return resultSet;
     }
 
     public void createClient(String fName, String lName, String pAddress, String password, LocalDate date) {
-        Statement statement;
+
         try {
-            statement = this.conn.createStatement();
-            statement.executeUpdate("INSERT INTO " +
+            MySQL.execute("INSERT INTO " +
                     "Clients (FirstName, LastName, PayeeAddress, Password, Date)" +
-                    "VALUES ('"+fName+"', '"+lName+"', '"+pAddress+"', '"+password+"', '"+date.toString()+"');");
-        }catch (Exception e){
+                    "VALUES ('" + fName + "', '" + lName + "', '" + pAddress + "', '" + password + "', '" + date.toString() + "');");
+        } catch (Exception e) {
             e.printStackTrace();
         }
     }
 
     public void createCheckingAccount(String owner, String number, double tLimit, double balance) {
-        Statement statement;
+
         try {
-            statement = this.conn.createStatement();
-            statement.executeUpdate("INSERT INTO " +
+
+            MySQL.execute("INSERT INTO " +
                     "CheckingAccounts (Owner, AccountNumber, TransactionLimit, Balance)" +
-                    " VALUES ('"+owner+"', '"+number+"', "+tLimit+", "+balance+")");
-        }catch (Exception e){
+                    " VALUES ('" + owner + "', '" + number + "', " + tLimit + ", " + balance + ")");
+        } catch (Exception e) {
             e.printStackTrace();
         }
     }
 
     public void createSavingsAccount(String owner, String number, double wLimit, double balance) {
-        Statement statement;
+
         try {
-            statement = this.conn.createStatement();
-            statement.executeUpdate("INSERT INTO " +
+            MySQL.execute("INSERT INTO " +
                     "SavingsAccounts (Owner, AccountNumber, WithdrawalLimit, Balance)" +
-                    " VALUES ('"+owner+"', '"+number+"', "+wLimit+", "+balance+")");
-        }catch (Exception e){
+                    " VALUES ('" + owner + "', '" + number + "', " + wLimit + ", " + balance + ")");
+        } catch (Exception e) {
             e.printStackTrace();
         }
     }
 
     public ResultSet getAllClientsData() {
-        Statement statement;
         ResultSet resultSet = null;
         try {
-            statement = this.conn.createStatement();
-            resultSet = statement.executeQuery("SELECT * FROM Clients;");
-        }catch (Exception e){
+            resultSet = MySQL.execute("SELECT * FROM Clients ");
+        } catch (Exception e) {
             e.printStackTrace();
         }
         return resultSet;
     }
 
     public void depositSavings(String pAddress, double amount) {
-        Statement statement;
         try {
-            statement = this.conn.createStatement();
-            statement.executeUpdate("UPDATE SavingsAccounts SET Balance="+amount+" WHERE Owner='"+pAddress+"';");
-        }catch (Exception e){
+            MySQL.execute("UPDATE SavingsAccounts SET Balance=" + amount + " WHERE Owner='" + pAddress + "' ");
+        } catch (Exception e) {
             e.printStackTrace();
         }
     }
@@ -175,12 +152,12 @@ public class DatabaseDriver {
      * */
 
     public ResultSet searchClient(String pAddress) {
-        Statement statement;
+
         ResultSet resultSet = null;
         try {
-            statement = this.conn.createStatement();
-            resultSet = statement.executeQuery("SELECT * FROM Clients WHERE PayeeAddress='"+pAddress+"';");
-        }catch (Exception e){
+
+            resultSet = MySQL.execute("SELECT * FROM Clients WHERE PayeeAddress='" + pAddress + "' ");
+        } catch (Exception e) {
             e.printStackTrace();
         }
         return resultSet;
@@ -201,24 +178,22 @@ public class DatabaseDriver {
 //    }
 
     public ResultSet getCheckingAccountData(String pAddress) {
-        Statement statement;
+
         ResultSet resultSet = null;
         try {
-            statement = this.conn.createStatement();
-            resultSet = statement.executeQuery("SELECT * FROM `CheckingAccounts` WHERE `Owner`='"+pAddress+"'");
-        }catch (Exception e){
+
+            resultSet = MySQL.execute("SELECT * FROM `CheckingAccounts` WHERE `Owner`='" + pAddress + "' ");
+        } catch (Exception e) {
             e.printStackTrace();
         }
         return resultSet;
     }
 
     public ResultSet getSavingsAccountData(String pAddress) {
-        Statement statement;
         ResultSet resultSet = null;
         try {
-            statement = this.conn.createStatement();
-            resultSet = statement.executeQuery("SELECT * FROM `SavingsAccounts` WHERE `Owner`='"+pAddress+"'");
-        }catch (Exception e){
+            resultSet = MySQL.execute("SELECT * FROM `SavingsAccounts` WHERE `Owner`='" + pAddress + "' ");
+        } catch (Exception e) {
             e.printStackTrace();
         }
         return resultSet;
